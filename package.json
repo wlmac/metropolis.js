@@ -1,0 +1,22 @@
+{
+  "name": "metropolis.js",
+  "version": "0.0.1",
+  "description": "API wrapper library for Metropolis",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wlmac/metropolis.js.git"
+  },
+  "author": "wlmac",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/wlmac/metropolis.js/issues"
+  },
+  "homepage": "https://github.com/wlmac/metropolis.js#readme",
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  }
+}
