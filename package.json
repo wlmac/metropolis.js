@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json"
   },
   "repository": {
     "type": "git",
@@ -17,7 +19,17 @@
     "url": "https://github.com/wlmac/metropolis.js/issues"
   },
   "homepage": "https://github.com/wlmac/metropolis.js#readme",
+  "files": [
+    "lib/**/*"
+  ],
   "devDependencies": {
+    "prettier": "^2.7.1",
+    "rollup": "^2.75.7",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "axios": "^0.27.2"
   }
 }
