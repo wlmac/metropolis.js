@@ -1,3 +1,5 @@
+import Organization from "./organization";
+
 export default interface User {
     id: number,
     slug: string,
@@ -5,6 +7,6 @@ export default interface User {
     bio: string,
     timezone: string,
     graduatingYear: number,
-    //organizations: 
-    //following: 
+    organizations: Array<Organization>;
+    following: Array<Organization>;
 }
