@@ -1,7 +1,7 @@
 enum MembershipStatus {
-	Open,
-	Accepting,
-	Closed,
+	Open = "Open Membership",
+	Accepting = "Accepting Applications",
+	Closed = "Closed Applications",
 }
 
 export default MembershipStatus;
