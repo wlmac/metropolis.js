@@ -5,7 +5,7 @@ enum Role {
 	App = "App Developer",
 	Graphics = "Graphic Designer",
 	Content = "Content Creator",
-	Game = "Game Developer",
+	Extras = "Game Developer",
 }
 
 export default Role;
