@@ -3,14 +3,13 @@ import type Client from './client';
 import Tag from '../interfaces/tag';
 
 export default class RefTag implements Ref<number, Tag> {
-    value: number;
+  value: number;
 
-    constructor(value: number) {
-        this.value = value;
-    }
+  constructor(value: number) {
+    this.value = value;
+  }
 
-    deref(client: Client): Promise<Tag> {
-        throw new TypeError("not implemented");
-    }
+  deref(client: Client): Promise<Tag> {
+    throw new TypeError('not implemented');
+  }
 }
-

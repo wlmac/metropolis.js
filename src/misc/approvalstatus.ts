@@ -1,8 +1,8 @@
 enum ApprovalStatus {
-	Draft,
-	Pending,
-	Approved,
-	Rejected,
+  Draft,
+  Pending,
+  Approved,
+  Rejected,
 }
 
 export default ApprovalStatus;

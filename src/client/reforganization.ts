@@ -3,14 +3,13 @@ import type Client from './client';
 import Organization from '../interfaces/organization';
 
 export default class RefOrganization implements Ref<number, Organization> {
-    value: number;
+  value: number;
 
-    constructor(value: number) {
-        this.value = value;
-    }
+  constructor(value: number) {
+    this.value = value;
+  }
 
-    deref(client: Client): Promise<Organization> {
-        throw new TypeError("not implemented");
-    }
+  deref(client: Client): Promise<Organization> {
+    throw new TypeError('not implemented');
+  }
 }
-

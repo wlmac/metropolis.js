@@ -1,7 +1,7 @@
 import Client from './client/client';
 
 const Metropolis = {
-    Client: Client
-}
+  Client: Client,
+};
 
 export default Metropolis;

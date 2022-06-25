@@ -1,6 +1,6 @@
-import Post from "./post";
+import Post from './post';
 
 export default interface BlogPost extends Post {
-    featuredImage: URL;
-    slug: string;
+  featuredImage: URL;
+  slug: string;
 }
