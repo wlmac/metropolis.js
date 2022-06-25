@@ -4,6 +4,7 @@ import Routes from '../misc/routes';
 export default class SessionManager {
     private refreshToken: string = "";
     private accessToken: string = "";
+
     auth(token: string): Promise<void> {
         return new Promise<void>((resolve, reject) => {
             this.refreshToken = token;
@@ -60,4 +61,39 @@ export default class SessionManager {
             })
         })
     }
+
+    request(endpoint: string, payload: any, method: RequestMethod, auth: boolean, retry?: boolean): Promise<APIResponse> {
+        return new Promise((resolve, reject) => {
+            axios[method](`${Routes.BASEURL}${endpoint}`, payload, auth ? {
+                headers: {
+                    'Bearer': `Authorization ${this.accessToken}`
+                }
+            } : {}).then(res => {
+                resolve(new APIResponse(true, res.data, ''));
+            }).catch(err => {
+                if(auth && retry) {
+                    this.refresh().then(() => {
+                        return this.request(endpoint, payload, method, auth, false);
+                    }).catch(err => reject(err));
+                }
+                resolve(new APIResponse(false, {}, err));
+            });
+        })
+    }
+}
+
+class APIResponse {
+    success: boolean;
+    response: any;
+    error: string;
+    constructor(success: boolean, response: any, error: string) {
+        this.success = success;
+        this.response = response;
+        this.error = error;
+    }
+}
+
+enum RequestMethod {
+    GET = "get",
+    POST = "post"
 }
