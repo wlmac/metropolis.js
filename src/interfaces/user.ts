@@ -1,4 +1,5 @@
 import Organization from "./organization";
+import Tag from "./tag";
 
 export default interface User {
     id: number,
@@ -8,5 +9,5 @@ export default interface User {
     timezone: string,
     graduatingYear: number,
     organizations: Array<Organization>;
-    following: Array<Organization>;
+    following: Array<Tag>;
 }
