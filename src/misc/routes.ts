@@ -3,6 +3,9 @@ const Routes = {
     AUTH: {
         LOGIN: "/api/auth/token",
         REFRESH: "/api/auth/token/refresh"
+    },
+    POST: {
+        ANNOUNCEMENT: "/api/announcements"
     }
 }
 
