@@ -7,7 +7,8 @@ const Routes = {
   POST: {
     ANNOUNCEMENT: '/api/v3/announcement',
   },
-  USER: '/api/v3/user',
+  USER: '/api/v3/user/',
+  OBJECT: "/api/v3/",
 };
 
 export default Routes;

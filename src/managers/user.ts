@@ -50,8 +50,7 @@ export default class UserManager extends TimedManager<string, User> {
       .request<UserRaw>(Routes.USER + encodeURI(slug), undefined, RequestMethod.GET, true, true)
       .then((resp) => {
         if (!resp.success) throw new TypeError(resp.error === null ? '' : resp.error);
-        if (resp.response === null) throw new TypeError('unreacheable');
-        return toUser(resp.response);
+        return toUser(resp.response as UserRaw);
       });
   }
 }
