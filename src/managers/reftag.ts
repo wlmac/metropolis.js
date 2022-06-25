@@ -1,5 +1,5 @@
 import Ref from '../interfaces/ref';
-import type Client from './client';
+import type Client from '../client/client';
 import Tag from '../interfaces/tag';
 
 export default class RefTag implements Ref<number, Tag> {

@@ -1,5 +1,5 @@
 import Ref from '../interfaces/ref';
-import type Client from './client';
+import type Client from '../client/client';
 import Organization from '../interfaces/organization';
 
 export default class RefOrganization implements Ref<number, Organization> {
