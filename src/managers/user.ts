@@ -1,3 +1,4 @@
+import TimedManager from './timed';
 import User from '../interfaces/user';
 import Routes from '../misc/routes';
 import SessionManager, { RequestMethod } from './session';
@@ -33,29 +34,18 @@ function toUser(r: UserRaw): User {
   };
 }
 
-export default class UserManager {
-  private session;
-  private cache = new Map<string, { u: User, fetched: Date }>();
-
-  constructor(session: SessionManager) {
-    this.session = session;
+export default class UserManager extends TimedManager<string, User> {
+  /**
+   * _expiryTime() gets the expiry time (24 hours after)
+   * per {@link https://noi.nyiyui.ca/k/1063/4604#Get_User}
+   */
+  _expiryTime(): Date {
+    const expire = new Date()
+    expire.setHours(expire.getHours() + 24)
+    return expire
   }
 
-  async getUser(slug: string): Promise<User> {
-    const cachedUser = this.cache.get(slug)
-    if (cachedUser !== undefined) {
-      const expire = new Date()
-      expire.setHours(expire.getHours() + 24)
-      if (cachedUser.fetched > expire) {
-        return cachedUser.u
-      }
-    }
-    const u = await this.eagerlyGetUser(slug)
-    this.cache.set(slug, { u, fetched: new Date() })
-    return u
-  }
-
-  private eagerlyGetUser(slug: string): Promise<User> {
+  _eagerlyGet(slug: string): Promise<User> {
     return this.session
       .request<UserRaw>(Routes.USER + encodeURI(slug), undefined, RequestMethod.GET, true, true)
       .then((resp) => {
