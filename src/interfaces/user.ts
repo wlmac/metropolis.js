@@ -1,5 +1,6 @@
 import Organization from "./organization";
 import Tag from "./tag";
+import Ref from "./ref";
 
 export default interface User {
     id: number,
@@ -8,6 +9,6 @@ export default interface User {
     bio: string,
     timezone: string,
     graduatingYear: number,
-    organizations: Array<Organization>;
-    following: Array<Tag>;
+    organizations: Ref<number, Organization>[];
+    following: Ref<number, Tag>[];
 }

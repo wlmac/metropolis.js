@@ -62,38 +62,45 @@ export default class SessionManager {
         })
     }
 
-    request(endpoint: string, payload: any, method: RequestMethod, auth: boolean, noRetry?: boolean): Promise<APIResponse> {
+    request<T>(endpoint: string, payload: any, method: RequestMethod, auth: boolean, noRetry?: boolean): Promise<APIResponse<T>> {
         return new Promise((resolve, reject) => {
             axios[method](`${Routes.BASEURL}${endpoint}`, payload, auth ? {
                 headers: {
                     'Bearer': `Authorization ${this.accessToken}`
                 }
             } : {}).then(res => {
-                resolve(new APIResponse(true, res.data, ''));
+                resolve(new APIResponse(res.data));
             }).catch(err => {
                 if(auth && !noRetry) {
                     this.refresh().then(() => {
                         return this.request(endpoint, payload, method, auth, true);
-                    }).catch(err => reject(err));
+                    }).catch(reject);
                 }
-                resolve(new APIResponse(false, {}, err));
+                resolve(new APIResponse<T>(null, err));
             });
         })
     }
 }
 
-class APIResponse {
-    success: boolean;
-    response: any;
-    error: string;
-    constructor(success: boolean, response: any, error: string) {
-        this.success = success;
+export class APIResponse<T> {
+    response: T | null;
+    error: string | null;
+
+    constructor(response: T | null, error?: string) {
         this.response = response;
-        this.error = error;
+        if (error === undefined) {
+            this.error = null;
+        } else {
+            this.error = error;
+        }
+    }
+
+    get success() {
+        return !this.error
     }
 }
 
-enum RequestMethod {
+export enum RequestMethod {
     GET = "get",
     POST = "post"
 }
