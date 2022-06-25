@@ -2,8 +2,8 @@ import { default as axios } from 'axios';
 import SessionManager, { RequestMethod, APIResponse } from '../managers/session';
 import User from '../interfaces/user';
 import Ref from '../interfaces/ref';
-import RefOrganization from './reforganization';
-import RefTag from './reftag';
+import RefOrganization from '../managers/reforganization';
+import RefTag from '../managers/reftag';
 
 /**
  * UserRaw type as defined in {@link https://noi.nyiyui.ca/k/1063/4604#Get_User}.
