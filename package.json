@@ -1,5 +1,5 @@
 {
-  "name": "metropolis.js",
+  "name": "@wlmac/metropolis.js",
   "version": "0.0.1",
   "description": "API wrapper library for Metropolis",
   "main": "lib/index.js",
