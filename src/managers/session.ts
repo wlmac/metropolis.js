@@ -93,7 +93,7 @@ class APIResponse {
     }
 }
 
-enum RequestMethod {
+export enum RequestMethod {
     GET = "get",
     POST = "post"
 }
