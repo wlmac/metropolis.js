@@ -62,7 +62,7 @@ export default class SessionManager {
         })
     }
 
-    request(endpoint: string, payload: any, method: RequestMethod, auth: boolean, retry?: boolean): Promise<APIResponse> {
+    request(endpoint: string, payload: any, method: RequestMethod, auth: boolean, noRetry?: boolean): Promise<APIResponse> {
         return new Promise((resolve, reject) => {
             axios[method](`${Routes.BASEURL}${endpoint}`, payload, auth ? {
                 headers: {
@@ -71,9 +71,9 @@ export default class SessionManager {
             } : {}).then(res => {
                 resolve(new APIResponse(true, res.data, ''));
             }).catch(err => {
-                if(auth && retry) {
+                if(auth && !noRetry) {
                     this.refresh().then(() => {
-                        return this.request(endpoint, payload, method, auth, false);
+                        return this.request(endpoint, payload, method, auth, true);
                     }).catch(err => reject(err));
                 }
                 resolve(new APIResponse(false, {}, err));
